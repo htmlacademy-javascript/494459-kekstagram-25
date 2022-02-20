@@ -1,6 +1,5 @@
 const getRandomNumber = (min, max) => {
   const RADIX = 10;
-
   if (min < 0 || max < 0) {
     return 0;
   }
