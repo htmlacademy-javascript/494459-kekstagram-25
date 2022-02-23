@@ -10,10 +10,7 @@ const getRandomNumber = (min, max) => {
   return parseInt(Math.random() * (max - min) + min, RADIX);
 };
 
-const maxLengthCheck = (str, strLength) => {
-  const MAX_LENGTH = 140;
-  return (str.length <= strLength && strLength <= MAX_LENGTH);
-};
+const checkMaxLength = (str, strLength) => str.length <= strLength;
 
 getRandomNumber();
-maxLengthCheck();
+checkMaxLength();
