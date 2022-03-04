@@ -1,5 +1,3 @@
-import { createUser } from './data.js';
+import { getMockSimilarUsers } from './data.js';
 
-const SIMILAR_USER_COUNT = 25;
-
-const similarUsers = new Array(SIMILAR_USER_COUNT).fill('').map((_, index) => createUser(index));
+window.console.log(getMockSimilarUsers());
