@@ -10,6 +10,7 @@ const MESSAGES = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
+const SIMILAR_USER_COUNT = 25;
 const AMOUNT_COMMENTS = getRandomNumber(1, 2);
 const RANDOM_LIKES_AMOUNT = getRandomNumber(15, 200);
 const RANDOM_ID = getRandomNumber(1, 25);
@@ -30,4 +31,6 @@ const createUser = (index) => ({
   }],
 });
 
-export { createUser };
+const getMockSimilarUsers = () => new Array(SIMILAR_USER_COUNT).fill('').map((_, index) => createUser(index));
+
+export { getMockSimilarUsers };
