@@ -1,3 +1,4 @@
-import { getMockSimilarUsers } from './data.js';
+import { pictures } from './mock/pictures.js';
 
-window.console.log(getMockSimilarUsers());
+
+window.console.log(pictures);
