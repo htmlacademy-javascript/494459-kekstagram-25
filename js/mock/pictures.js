@@ -1,19 +1,19 @@
-import { getMockSimilarUsers } from './data.js';
+import { getMockSimilarUsers, AMOUNT_COMMENTS } from './data.js';
 
 const pictures = document.querySelector('.pictures');
 const template = document.querySelector('#picture').content.querySelector('.picture');
 
-const similarUsers = getMockSimilarUsers();
-const similarListFragments = document.createDocumentFragment();
+const similarPictures = getMockSimilarUsers();
+const similarListFragment = document.createDocumentFragment();
 
-similarUsers.forEach(({ url, likes, comments }) => {
+similarPictures.forEach(({ url, likes, comments }) => {
   const picture = template.cloneNode(true);
   picture.querySelector('img').setAttribute('src', url);
   picture.querySelector('.picture__likes').textContent = likes;
-  picture.querySelector('.picture__comments').textContent = comments.message;
-  similarListFragments.appendChild(picture);
+  picture.querySelector('.picture__comments').textContent = AMOUNT_COMMENTS;
+  similarListFragment.appendChild(picture);
 });
 
-pictures.appendChild(similarListFragments);
+pictures.appendChild(similarListFragment);
 
 export { pictures };
