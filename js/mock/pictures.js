@@ -6,7 +6,7 @@ const template = document.querySelector('#picture').content.querySelector('.pict
 const similarPictures = getMockSimilarUsers();
 const similarListFragment = document.createDocumentFragment();
 
-similarPictures.forEach(({ url, likes, comments }) => {
+similarPictures.forEach(({ url, likes }) => {
   const picture = template.cloneNode(true);
   picture.querySelector('img').setAttribute('src', url);
   picture.querySelector('.picture__likes').textContent = likes;

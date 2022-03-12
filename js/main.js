@@ -1,4 +1,4 @@
 import { pictures } from './mock/pictures.js';
 
 
-console.log(pictures);
+window.console.log(pictures);
