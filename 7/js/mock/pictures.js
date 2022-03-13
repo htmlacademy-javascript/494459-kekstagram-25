@@ -1,19 +1,26 @@
-import { getMockSimilarUsers, AMOUNT_COMMENTS } from './data.js';
+import { getMockSimilarPictures } from './data.js';
 
 const pictures = document.querySelector('.pictures');
 const template = document.querySelector('#picture').content.querySelector('.picture');
 
-const similarPictures = getMockSimilarUsers();
-const similarListFragment = document.createDocumentFragment();
+const similarListFragments = document.createDocumentFragment();
 
-similarPictures.forEach(({ url, likes }) => {
+const getPictureTemplate = (dataPicture) => {
   const picture = template.cloneNode(true);
-  picture.querySelector('img').setAttribute('src', url);
-  picture.querySelector('.picture__likes').textContent = likes;
-  picture.querySelector('.picture__comments').textContent = AMOUNT_COMMENTS;
-  similarListFragment.appendChild(picture);
-});
+  picture.querySelector('img').setAttribute('src', dataPicture.url);
+  picture.querySelector('.picture__likes').textContent = dataPicture.likes;
+  picture.querySelector('.picture__comments').textContent = dataPicture.comments.length;
+  return picture;
+};
 
-pictures.appendChild(similarListFragment);
+const renderPhotos = (similarPictures) => {
+  similarPictures.forEach((picture) => {
+    const similarPicture = getPictureTemplate(picture);
+    similarListFragments.appendChild(similarPicture);
+  });
+  pictures.appendChild(similarListFragments);
+};
 
-export { pictures };
+renderPhotos(getMockSimilarPictures());
+
+export { renderPhotos };
