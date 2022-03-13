@@ -31,6 +31,6 @@ const createUser = (index) => ({
   }],
 });
 
-const getMockSimilarUsers = () => new Array(SIMILAR_USER_COUNT).fill('').map((_, index) => createUser(index));
+const getMockSimilarPictures = () => new Array(SIMILAR_USER_COUNT).fill('').map((_, index) => createUser(index));
 
-export { getMockSimilarUsers };
+export { getMockSimilarPictures, AMOUNT_COMMENTS };
