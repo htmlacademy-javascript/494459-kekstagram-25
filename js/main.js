@@ -1,4 +1,4 @@
-import { pictures } from './mock/pictures.js';
+import { renderPhotos } from './mock/pictures.js';
 
 
-window.console.log(pictures);
+window.console.log(renderPhotos);
