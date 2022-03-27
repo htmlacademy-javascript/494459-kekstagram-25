@@ -19,7 +19,8 @@ const RANDOM_AVATAR = getRandomNumber(1, 6);
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 const getRandomComments = (comments) => comments.slice(0, AMOUNT_COMMENTS).join(', ');
 
-const createUser = (index) => ({
+const createPicture = (index) => ({
+  id: index,
   url: `photos/${index + 1}.jpg`,
   description: 'bla bla bla',
   likes: RANDOM_LIKES_AMOUNT,
@@ -28,9 +29,29 @@ const createUser = (index) => ({
     avatar: `img/avatar-${RANDOM_AVATAR}.svg`,
     message: getRandomComments(MESSAGES),
     name: getRandomArrayElement(NAMES),
+  },
+  {
+    id: RANDOM_ID,
+    avatar: `img/avatar-${RANDOM_AVATAR}.svg`,
+    message: getRandomComments(MESSAGES),
+    name: getRandomArrayElement(NAMES),
+  },
+  {
+    id: RANDOM_ID,
+    avatar: `img/avatar-${RANDOM_AVATAR}.svg`,
+    message: getRandomComments(MESSAGES),
+    name: getRandomArrayElement(NAMES),
+  },
+  {
+    id: RANDOM_ID,
+    avatar: `img/avatar-${RANDOM_AVATAR}.svg`,
+    message: getRandomComments(MESSAGES),
+    name: getRandomArrayElement(NAMES),
   }],
 });
 
-const getMockSimilarPictures = () => new Array(SIMILAR_USER_COUNT).fill('').map((_, index) => createUser(index));
+const getMockSimilarPictures = () => new Array(SIMILAR_USER_COUNT).fill('').map((_, index) => createPicture(index));
 
-export { getMockSimilarPictures, AMOUNT_COMMENTS };
+const mockData = getMockSimilarPictures();
+
+export { mockData, AMOUNT_COMMENTS };

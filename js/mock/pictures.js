@@ -1,5 +1,3 @@
-import { getMockSimilarPictures } from './data.js';
-
 const pictures = document.querySelector('.pictures');
 const template = document.querySelector('#picture').content.querySelector('.picture');
 
@@ -7,6 +5,7 @@ const similarListFragments = document.createDocumentFragment();
 
 const getPictureTemplate = (dataPicture) => {
   const picture = template.cloneNode(true);
+  picture.setAttribute('id', dataPicture.id);
   picture.querySelector('img').setAttribute('src', dataPicture.url);
   picture.querySelector('.picture__likes').textContent = dataPicture.likes;
   picture.querySelector('.picture__comments').textContent = dataPicture.comments.length;
@@ -21,6 +20,4 @@ const renderPhotos = (similarPictures) => {
   pictures.appendChild(similarListFragments);
 };
 
-renderPhotos(getMockSimilarPictures());
-
-export { renderPhotos };
+export { renderPhotos, pictures };
