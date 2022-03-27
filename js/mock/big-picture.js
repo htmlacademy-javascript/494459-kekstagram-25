@@ -10,10 +10,12 @@ const socialComment = (data) => `
 src= ${data.avatar}
 alt= ${data.name} width="35" height="35">
 <p class="social__text"> ${data.message} </p>
-</li>
-`;
+</li>`;
 
-const getUserComments = (data) => data.map(comment => socialComment(comment)).join('');
+const getUserComments = (data) => {
+  const userComments = data.map((comment) => socialComment(comment));
+  return userComments.join('');
+};
 
 const dataFilling = (pictureData) => {
   showBigPhoto();
