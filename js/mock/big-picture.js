@@ -4,20 +4,21 @@ import { isEscapeKey } from './utill.js';
 const bigPicture = document.querySelector('.big-picture');
 const closeButton = bigPicture.querySelector('.big-picture__cancel');
 
-const socialComment = (data) => `
-<li class="social__comment">
-<img class="social__picture"
-src= ${data.avatar}
-alt= ${data.name} width="35" height="35">
-<p class="social__text"> ${data.message} </p>
-</li>`;
+function socialComment(data) {
+  return `<li class="social__comment">
+    <img class="social__picture"
+    src= ${data.avatar}
+    alt= ${data.name} width="35" height="35">
+    <p class="social__text"> ${data.message} </p>
+    </li>`;
+}
 
 const getUserComments = (data) => {
   const userComments = data.map((comment) => socialComment(comment));
   return userComments.join('');
 };
 
-const dataFilling = (pictureData) => {
+const renderBigPicture = (pictureData) => {
   showBigPhoto();
   bigPicture.querySelector('.big-picture__img img').setAttribute('src', pictureData.url);
   bigPicture.querySelector('.likes-count').textContent = pictureData.likes;
@@ -35,35 +36,35 @@ const onClickPictureContainer = (evt) => {
       return pictureObj;
     }
   });
-  dataFilling(pictureData);
+  renderBigPicture(pictureData);
 };
 
-const onEscapeKeyDown = (evt) => {
+const onDocumentKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeBigPhoto();
   }
 };
 
-const onClickDown = () => closeBigPhoto();
+const onСloseButtonClick = () => closeBigPhoto();
 
 function showBigPhoto() {
   bigPicture.classList.remove('hidden');
   document.querySelector('body').classList.add('modal-open');
 
-  document.addEventListener('keydown', onEscapeKeyDown);
+  document.addEventListener('keydown', onDocumentKeyDown);
 
-  closeButton.addEventListener('click', onClickDown);
+  closeButton.addEventListener('click', onСloseButtonClick);
 }
 
 function closeBigPhoto() {
   bigPicture.classList.add('hidden');
 
-  document.removeEventListener('keydown', onEscapeKeyDown);
-  closeButton.removeEventListener('click', onClickDown);
+  document.removeEventListener('keydown', onDocumentKeyDown);
+  closeButton.removeEventListener('click', onСloseButtonClick);
 }
 
 const picturesContainer = document.querySelector('.pictures');
 picturesContainer.addEventListener('click', onClickPictureContainer);
 
-export { dataFilling };
+export { renderBigPicture };
