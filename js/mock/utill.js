@@ -13,5 +13,8 @@ const checkMaxLength = (str, strLength) => str.length <= strLength;
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export { getRandomNumber, checkMaxLength, isEscapeKey };
+const modalOpen = () => document.querySelector('body').classList.add('modal-open');
+const modalClose = () => document.querySelector('body').classList.remove('modal-open');
+
+export { getRandomNumber, checkMaxLength, isEscapeKey, modalOpen, modalClose};
 
