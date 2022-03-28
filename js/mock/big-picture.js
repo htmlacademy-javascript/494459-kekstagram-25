@@ -1,5 +1,5 @@
 import { mockData } from './data.js';
-import { isEscapeKey } from './utill.js';
+import { isEscapeKey, modalOpen, modalClose } from './utill.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const closeButton = bigPicture.querySelector('.big-picture__cancel');
@@ -31,6 +31,9 @@ const renderBigPicture = (pictureData) => {
 
 const onClickPictureContainer = (evt) => {
   const pictureCard = evt.target.closest('.picture');
+  if (pictureCard === null) {
+    return;
+  }
   const pictureData = mockData.find((pictureObj) => {
     if (+pictureObj.id === +pictureCard.id) {
       return pictureObj;
@@ -50,7 +53,7 @@ const onСloseButtonClick = () => closeBigPhoto();
 
 function showBigPhoto() {
   bigPicture.classList.remove('hidden');
-  document.querySelector('body').classList.add('modal-open');
+  modalOpen();
 
   document.addEventListener('keydown', onDocumentKeyDown);
 
@@ -59,6 +62,7 @@ function showBigPhoto() {
 
 function closeBigPhoto() {
   bigPicture.classList.add('hidden');
+  modalClose();
 
   document.removeEventListener('keydown', onDocumentKeyDown);
   closeButton.removeEventListener('click', onСloseButtonClick);
