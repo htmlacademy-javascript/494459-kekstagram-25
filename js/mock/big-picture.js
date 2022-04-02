@@ -5,12 +5,14 @@ const bigPicture = document.querySelector('.big-picture');
 const closeButton = bigPicture.querySelector('.big-picture__cancel');
 
 function socialComment(data) {
-  return `<li class="social__comment">
+  return `
+    <li class="social__comment">
     <img class="social__picture"
     src= ${data.avatar}
     alt= ${data.name} width="35" height="35">
     <p class="social__text"> ${data.message} </p>
-    </li>`;
+    </li>
+  `;
 }
 
 const getUserComments = (data) => {
