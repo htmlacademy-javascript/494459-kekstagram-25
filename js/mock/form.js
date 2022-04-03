@@ -32,13 +32,13 @@ function showUploadedPhoto() {
   uploadBtn.removeEventListener('change', showUploadedPhoto);
 }
 
-const regExp = /^#[A-Za-zА-Я-а-яЁё0-9]{1,19}$/;
+// const regExp = /^#[A-Za-zА-Я-а-яЁё0-9]{1,19}$/;
 
-const onInputChange = (evt) => {
-  const tmpResult = evt.target.value.split(' ');
-  const isNoHaveRepeats = tmpResult.every((str, index, arr) => arr.indexOf(str) === index);
-  const isHashtagLessThanFive = tmpResult.length <= 5;
-};
+// const onInputChange = (evt) => {
+//   const tmpResult = evt.target.value.split(' ');
+//   const isNoHaveRepeats = tmpResult.every((str, index, arr) => arr.indexOf(str) === index);
+//   const isHashtagLessThanFive = tmpResult.length <= 5;
+// };
 
 const pristine = new Pristine(imgUploadForm, {
   classTo: 'form__text',
@@ -59,6 +59,6 @@ imgUploadForm.addEventListener('submit', (evt) => {
 });
 
 uploadBtn.addEventListener('change', showUploadedPhoto);
-textHashtag.addEventListener('change', onInputChange);
+// textHashtag.addEventListener('change', onInputChange);
 
 export { uploadBtn };
