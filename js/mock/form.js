@@ -6,7 +6,7 @@ const imgUploadCancelBtn = document.querySelector('.img-upload__cancel');
 const textHashtagInput = document.querySelector('.text__hashtags');
 const textDescriptionInput = document.querySelector('.text__description');
 const imgUploadForm = document.querySelector('.img-upload__form');
-// const submitForm = document.querySelector('.img-upload__submit');
+const submitForm = document.querySelector('.img-upload__submit');
 
 const onDocumentKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -59,7 +59,7 @@ const validateHashTags = (value) => { // WIP
 
 const validateTextCount = (value) => value.length <= 140;
 
-pristine.addValidator(textHashtagInput, validateHashTags, 'АстАнАвись!! Ты что-то делаете не так!!');
+pristine.addValidator(textHashtagInput, validateHashTags, 'АстАнАвись!! Ты что-то делаешь не так!!');
 pristine.addValidator(textDescriptionInput, validateTextCount, 'Количество символов не может быть больше 140');
 
 imgUploadForm.addEventListener('submit', (evt) => {
