@@ -5,4 +5,5 @@ import { uploadBtn } from './mock/form.js';
 
 renderPhotos(mockData);
 
+window.console.log(uploadBtn);
 window.console.log(renderBigPicture);
