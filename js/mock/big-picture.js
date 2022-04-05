@@ -1,16 +1,18 @@
 import { mockData } from './data.js';
-import { isEscapeKey } from './utill.js';
+import { isEscapeKey, modalOpen, modalClose } from './utill.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const closeButton = bigPicture.querySelector('.big-picture__cancel');
 
 function socialComment(data) {
-  return `<li class="social__comment">
+  return `
+    <li class="social__comment">
     <img class="social__picture"
     src= ${data.avatar}
     alt= ${data.name} width="35" height="35">
     <p class="social__text"> ${data.message} </p>
-    </li>`;
+    </li>
+  `;
 }
 
 const getUserComments = (data) => {
@@ -25,12 +27,13 @@ const renderBigPicture = (pictureData) => {
   bigPicture.querySelector('.comments-count').textContent = pictureData.comments.length;
   bigPicture.querySelector('.social__caption').textContent = pictureData.description;
   bigPicture.querySelector('.social__comments').innerHTML = getUserComments(pictureData.comments);
-  bigPicture.querySelector('.social__comment-count').classList.add('hidden');
-  bigPicture.querySelector('.comments-loader').classList.add('hidden');
 };
 
 const onClickPictureContainer = (evt) => {
   const pictureCard = evt.target.closest('.picture');
+  if (pictureCard === null) {
+    return;
+  }
   const pictureData = mockData.find((pictureObj) => {
     if (+pictureObj.id === +pictureCard.id) {
       return pictureObj;
@@ -50,7 +53,7 @@ const onСloseButtonClick = () => closeBigPhoto();
 
 function showBigPhoto() {
   bigPicture.classList.remove('hidden');
-  document.querySelector('body').classList.add('modal-open');
+  modalOpen();
 
   document.addEventListener('keydown', onDocumentKeyDown);
 
@@ -59,6 +62,7 @@ function showBigPhoto() {
 
 function closeBigPhoto() {
   bigPicture.classList.add('hidden');
+  modalClose();
 
   document.removeEventListener('keydown', onDocumentKeyDown);
   closeButton.removeEventListener('click', onСloseButtonClick);
