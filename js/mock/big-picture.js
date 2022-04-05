@@ -27,8 +27,6 @@ const renderBigPicture = (pictureData) => {
   bigPicture.querySelector('.comments-count').textContent = pictureData.comments.length;
   bigPicture.querySelector('.social__caption').textContent = pictureData.description;
   bigPicture.querySelector('.social__comments').innerHTML = getUserComments(pictureData.comments);
-  bigPicture.querySelector('.social__comment-count').classList.add('hidden');
-  bigPicture.querySelector('.comments-loader').classList.add('hidden');
 };
 
 const onClickPictureContainer = (evt) => {

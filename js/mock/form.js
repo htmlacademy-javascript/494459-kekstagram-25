@@ -43,17 +43,17 @@ const pristine = new Pristine(imgUploadForm, {
 
 const regExp = /^#[A-Za-zА-Я-а-яЁё0-9]{1,19}$/;
 
-const isNoHaveRepeats = (string) => string.split(' ').every((str, index, arr) => arr.indexOf(str) === index);
+const isNoHaveRepeats = (string) => string.split(' ').every((value, index, arr) => arr.indexOf(value) === index);
 const isHashtagLessThanFive = (string) => string.split(' ').length <= 5;
-const isStringValidation = (string) => string.split(' ').every((str) => regExp.test(str.toString()));
+const isStringValidation = (string) => string.split(' ').every((value) => regExp.test(value.toString()));
 
-const validateTextCount = (value) => value.length <= 140;
+const isSymbolCountValidation = (str) => str.length <= 140;
 
 pristine.addValidator(textHashtagInput, isNoHaveRepeats, 'Хэштег не должен повторяться');
 pristine.addValidator(textHashtagInput, isHashtagLessThanFive, 'Количество хэшнегов не может быть больше 5');
 pristine.addValidator(textHashtagInput, isStringValidation, 'Хэштег должен начинаться с "#" и не должен превышать 20 символов');
 
-pristine.addValidator(textDescriptionInput, validateTextCount, 'Количество символов не может быть больше 140');
+pristine.addValidator(textDescriptionInput, isSymbolCountValidation, 'Количество символов не может быть больше 140');
 
 imgUploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
