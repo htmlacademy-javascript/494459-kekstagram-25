@@ -6,7 +6,6 @@ const imgUploadCancelBtn = document.querySelector('.img-upload__cancel');
 const textHashtagInput = document.querySelector('.text__hashtags');
 const textDescriptionInput = document.querySelector('.text__description');
 const imgUploadForm = document.querySelector('.img-upload__form');
-// const submitForm = document.querySelector('.img-upload__submit');
 
 const onDocumentKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
