@@ -33,15 +33,6 @@ function showUploadedPhoto() {
   uploadBtn.removeEventListener('change', showUploadedPhoto);
 }
 
-const regExp = /^#[A-Za-zА-Я-а-яЁё0-9]{1,19}$/;
-
-const onInputChange = (evt) => {
-  const stringArray = evt.target.value.split(' ');
-  const isNoHaveRepeats = stringArray.every((str, index, arr) => arr.indexOf(str) === index);
-  const isHashtagLessThanFive = stringArray.length <= 5;
-  return (isNoHaveRepeats && isHashtagLessThanFive && regExp.test(evt.target.value)) ? evt.target.value : false;
-};
-
 const pristine = new Pristine(imgUploadForm, {
   classTo: 'error-message__text',
   errorClass: 'error-message__text--invalid',
@@ -51,15 +42,18 @@ const pristine = new Pristine(imgUploadForm, {
   errorTextClass: 'text__error'
 });
 
-const validateHashTags = (value) => { // WIP
-  if (onInputChange) {
-    return value;
-  }
-};
+const regExp = /^#[A-Za-zА-Я-а-яЁё0-9]{1,19}$/;
+
+const isNoHaveRepeats = (string) => string.split(' ').every((str, index, arr) => arr.indexOf(str) === index);
+const isHashtagLessThanFive = (string) => string.split(' ').length <= 5;
+const isStringValidation = (string) => string.split(' ').every((str) => regExp.test(str.toString()));
 
 const validateTextCount = (value) => value.length <= 140;
 
-pristine.addValidator(textHashtagInput, validateHashTags, 'АстАнАвись!! Ты что-то делаешь не так!!');
+pristine.addValidator(textHashtagInput, isNoHaveRepeats, 'Хэштег не должен повторяться');
+pristine.addValidator(textHashtagInput, isHashtagLessThanFive, 'Количество хэшнегов не может быть больше 5');
+pristine.addValidator(textHashtagInput, isStringValidation, 'Хэштег должен начинаться с "#" и не должен превышать 20 символов');
+
 pristine.addValidator(textDescriptionInput, validateTextCount, 'Количество символов не может быть больше 140');
 
 imgUploadForm.addEventListener('submit', (evt) => {
@@ -73,6 +67,5 @@ textHashtagInput.addEventListener('keydown', stopPropagation);
 textDescriptionInput.addEventListener('keydown', stopPropagation);
 
 uploadBtn.addEventListener('change', showUploadedPhoto);
-textHashtagInput.addEventListener('change', onInputChange);
 
 export { uploadBtn };
