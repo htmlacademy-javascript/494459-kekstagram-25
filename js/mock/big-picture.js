@@ -23,13 +23,16 @@ const getUserComments = (data) => {
 
 const renderBigPicture = (pictureData) => {
   showBigPhoto();
-  const socialCommentLoaderBtn = bigPicture.querySelector('.social__comments-loader');
   bigPicture.querySelector('.big-picture__img img').setAttribute('src', pictureData.url);
   bigPicture.querySelector('.likes-count').textContent = pictureData.likes;
   bigPicture.querySelector('.social__caption').textContent = pictureData.description;
-  socialComments.innerHTML = getUserComments(pictureData.comments);
+  bigPicture.querySelector('.comments-count').textContent = pictureData.comments.length;
+  socialComments.innerHTML = getUserComments(pictureData.comments.slice(0, 5));
+
+  const socialCommentLoaderBtn = bigPicture.querySelector('.social__comments-loader');
 
   let counter = bigPicture.querySelector('.current-quantity-comments').textContent = socialComments.querySelectorAll('.social__comment').length;
+
 
   const onSocialCommentLoaderBtnClick = (evt) => {
     evt.preventDefault();
