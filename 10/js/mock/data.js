@@ -47,6 +47,30 @@ const createPicture = (index) => ({
     avatar: `img/avatar-${RANDOM_AVATAR}.svg`,
     message: getRandomComments(MESSAGES),
     name: getRandomArrayElement(NAMES),
+  },
+  {
+    id: RANDOM_ID,
+    avatar: `img/avatar-${RANDOM_AVATAR}.svg`,
+    message: getRandomComments(MESSAGES),
+    name: getRandomArrayElement(NAMES),
+  },
+  {
+    id: RANDOM_ID,
+    avatar: `img/avatar-${RANDOM_AVATAR}.svg`,
+    message: getRandomComments(MESSAGES),
+    name: getRandomArrayElement(NAMES),
+  },
+  {
+    id: RANDOM_ID,
+    avatar: `img/avatar-${RANDOM_AVATAR}.svg`,
+    message: getRandomComments(MESSAGES),
+    name: getRandomArrayElement(NAMES),
+  },
+  {
+    id: RANDOM_ID,
+    avatar: `img/avatar-${RANDOM_AVATAR}.svg`,
+    message: getRandomComments(MESSAGES),
+    name: getRandomArrayElement(NAMES),
   }],
 });
 
