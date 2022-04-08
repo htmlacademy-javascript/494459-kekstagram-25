@@ -1,6 +1,7 @@
 import { mockData } from './data.js';
 import { isEscapeKey, modalOpen, modalClose } from './utill.js';
 
+const documentReaload = () => document.location.reload();
 const bigPicture = document.querySelector('.big-picture');
 const closeButton = bigPicture.querySelector('.big-picture__cancel');
 const socialComments = bigPicture.querySelector('.social__comments');
@@ -28,7 +29,6 @@ const renderBigPicture = (pictureData) => {
   bigPicture.querySelector('.social__caption').textContent = pictureData.description;
 
   const LOADING_COMMENTS = 5;
-
   const commentsCount = bigPicture.querySelector('.comments-count').textContent = pictureData.comments.length;
 
   socialComments.innerHTML = getUserComments(pictureData.comments.slice(0, LOADING_COMMENTS));
@@ -71,6 +71,7 @@ const onDocumentKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeBigPhoto();
+    documentReaload();
   }
 };
 
@@ -88,6 +89,7 @@ function showBigPhoto() {
 function closeBigPhoto() {
   bigPicture.classList.add('hidden');
   modalClose();
+  documentReaload();
 
   document.removeEventListener('keydown', onDocumentKeyDown);
   closeButton.removeEventListener('click', onСloseButtonClick);
