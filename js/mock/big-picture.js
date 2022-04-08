@@ -1,16 +1,18 @@
 import { mockData } from './data.js';
 import { isEscapeKey, modalOpen, modalClose } from './utill.js';
 
+const documentReaload = () => document.location.reload();
 const bigPicture = document.querySelector('.big-picture');
 const closeButton = bigPicture.querySelector('.big-picture__cancel');
+const socialComments = bigPicture.querySelector('.social__comments');
 
 function socialComment(data) {
   return `
-    <li class="social__comment">
-    <img class="social__picture"
-    src= ${data.avatar}
-    alt= ${data.name} width="35" height="35">
-    <p class="social__text"> ${data.message} </p>
+  <li class="social__comment">
+  <img class="social__picture"
+  src= ${data.avatar}
+  alt= ${data.name} width="35" height="35">
+  <p class="social__text"> ${data.message} </p>
     </li>
   `;
 }
@@ -24,9 +26,32 @@ const renderBigPicture = (pictureData) => {
   showBigPhoto();
   bigPicture.querySelector('.big-picture__img img').setAttribute('src', pictureData.url);
   bigPicture.querySelector('.likes-count').textContent = pictureData.likes;
-  bigPicture.querySelector('.comments-count').textContent = pictureData.comments.length;
   bigPicture.querySelector('.social__caption').textContent = pictureData.description;
-  bigPicture.querySelector('.social__comments').innerHTML = getUserComments(pictureData.comments);
+
+  const LOADING_COMMENTS = 5;
+  const commentsCount = bigPicture.querySelector('.comments-count').textContent = pictureData.comments.length;
+
+  socialComments.innerHTML = getUserComments(pictureData.comments.slice(0, LOADING_COMMENTS));
+
+  const socialCommentLoaderBtn = bigPicture.querySelector('.social__comments-loader');
+
+  const counter = bigPicture.querySelector('.current-quantity-comments');
+
+
+  const onSocialCommentLoaderBtnClick = (evt) => {
+    evt.preventDefault();
+    const currentQuantityComments = bigPicture.querySelector('.current-quantity-comments').textContent = socialComments.querySelectorAll('.social__comment').length;
+    if (currentQuantityComments + LOADING_COMMENTS < commentsCount) {
+      counter.textContent = currentQuantityComments + LOADING_COMMENTS;
+      socialComments.innerHTML += getUserComments(pictureData.comments.slice(0, LOADING_COMMENTS));
+    } if (currentQuantityComments + LOADING_COMMENTS > commentsCount) {
+      const result = commentsCount - currentQuantityComments;
+      counter.textContent = currentQuantityComments + result;
+      socialComments.innerHTML += getUserComments(pictureData.comments.slice(0, result));
+      socialCommentLoaderBtn.classList.add('hidden');
+    }
+  };
+  socialCommentLoaderBtn.addEventListener('click', onSocialCommentLoaderBtnClick);
 };
 
 const onClickPictureContainer = (evt) => {
@@ -46,6 +71,7 @@ const onDocumentKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeBigPhoto();
+    documentReaload();
   }
 };
 
@@ -63,6 +89,7 @@ function showBigPhoto() {
 function closeBigPhoto() {
   bigPicture.classList.add('hidden');
   modalClose();
+  documentReaload();
 
   document.removeEventListener('keydown', onDocumentKeyDown);
   closeButton.removeEventListener('click', onСloseButtonClick);

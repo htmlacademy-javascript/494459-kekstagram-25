@@ -45,12 +45,12 @@ const regExp = /^#[A-Za-zА-Я-а-яЁё0-9]{1,19}$/;
 
 const isNoHaveRepeats = (string) => string.split(' ').every((value, index, arr) => arr.indexOf(value) === index);
 const isHashtagLessThanFive = (string) => string.split(' ').length <= 5;
-const isStringValidation = (string) => string.split(' ').every((value) => regExp.test(value.toString()));
+const isStringValidation = (string) => string.split(' ').every((value) => regExp.test(value));
 
 const isSymbolCountValidation = (str) => str.length <= 140;
 
-pristine.addValidator(textHashtagInput, isNoHaveRepeats, 'Хэштег не должен повторяться');
-pristine.addValidator(textHashtagInput, isHashtagLessThanFive, 'Количество хэшнегов не может быть больше 5');
+pristine.addValidator(textHashtagInput, isNoHaveRepeats, 'Хэштеги не должны повторяться');
+pristine.addValidator(textHashtagInput, isHashtagLessThanFive, 'Количество хэштегов не может быть больше 5');
 pristine.addValidator(textHashtagInput, isStringValidation, 'Хэштег должен начинаться с "#" и не должен превышать 20 символов');
 
 pristine.addValidator(textDescriptionInput, isSymbolCountValidation, 'Количество символов не может быть больше 140');
