@@ -26,20 +26,30 @@ const renderBigPicture = (pictureData) => {
   bigPicture.querySelector('.big-picture__img img').setAttribute('src', pictureData.url);
   bigPicture.querySelector('.likes-count').textContent = pictureData.likes;
   bigPicture.querySelector('.social__caption').textContent = pictureData.description;
-  bigPicture.querySelector('.comments-count').textContent = pictureData.comments.length;
-  socialComments.innerHTML = getUserComments(pictureData.comments.slice(0, 5));
+
+  const LOADING_COMMENTS = 5;
+
+  const commentsCount = bigPicture.querySelector('.comments-count').textContent = pictureData.comments.length;
+
+  socialComments.innerHTML = getUserComments(pictureData.comments.slice(0, LOADING_COMMENTS));
 
   const socialCommentLoaderBtn = bigPicture.querySelector('.social__comments-loader');
 
-  let counter = bigPicture.querySelector('.current-quantity-comments').textContent = socialComments.querySelectorAll('.social__comment').length;
+  const counter = bigPicture.querySelector('.current-quantity-comments');
 
 
   const onSocialCommentLoaderBtnClick = (evt) => {
     evt.preventDefault();
-    const currentQuanitityComments = bigPicture.querySelector('.current-quantity-comments');
-    socialComments.innerHTML += getUserComments(pictureData.comments.slice(0, 5));
-    counter += 5;
-    currentQuanitityComments.textContent = counter;
+    const currentQuantityComments = bigPicture.querySelector('.current-quantity-comments').textContent = socialComments.querySelectorAll('.social__comment').length;
+    if (currentQuantityComments + LOADING_COMMENTS < commentsCount) {
+      counter.textContent = currentQuantityComments + LOADING_COMMENTS;
+      socialComments.innerHTML += getUserComments(pictureData.comments.slice(0, LOADING_COMMENTS));
+    } if (currentQuantityComments + LOADING_COMMENTS > commentsCount) {
+      const result = commentsCount - currentQuantityComments;
+      counter.textContent = currentQuantityComments + result;
+      socialComments.innerHTML += getUserComments(pictureData.comments.slice(0, result));
+      socialCommentLoaderBtn.classList.add('hidden');
+    }
   };
   socialCommentLoaderBtn.addEventListener('click', onSocialCommentLoaderBtnClick);
 };
