@@ -55,10 +55,7 @@ pristine.addValidator(textHashtagInput, isStringValidation, 'Хэштег дол
 
 pristine.addValidator(textDescriptionInput, isSymbolCountValidation, 'Количество символов не может быть больше 140');
 
-imgUploadForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  pristine.validate();
-});
+imgUploadForm.addEventListener('submit', () => pristine.validate());
 
 const stopPropagation = (evt) => evt.stopPropagation();
 

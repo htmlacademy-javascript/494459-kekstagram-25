@@ -686,7 +686,6 @@ main {
   width: 450px;
 
   margin: 0 auto;
-  margin-bottom: 20px;
   padding: 5px 10px;
 
   font-family: "Open Sans", "Arial", sans-serif;
@@ -1415,4 +1414,18 @@ main {
 
 .hidden {
   display: none;
+}
+
+.error-message__text {
+  margin: 0;
+  margin-bottom: 20px;
+  display: inline-block;
+  text-align: start;
+  font-size: 0.85em;
+  color: red;
+  text-transform: none;
+}
+
+.error-message__text--invalid {
+  margin-bottom: 10px;
 }

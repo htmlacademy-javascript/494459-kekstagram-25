@@ -26,8 +26,6 @@ const getUserComments = (data) => {
 const onSocialCommentLoaderBtnClick = (evt, pictureData) => {
   evt.preventDefault();
 
-  // const totalComments = pictureData.comments;
-
 
   const LOADING_COMMENTS = 5;
   socialComments.innerHTML = getUserComments(pictureData.comments.slice(0, LOADING_COMMENTS));
@@ -58,7 +56,7 @@ const renderBigPicture = (pictureData) => {
   bigPicture.querySelector('.likes-count').textContent = pictureData.likes;
   bigPicture.querySelector('.social__caption').textContent = pictureData.description;
 
-  const currentQuantityComments = bigPicture.querySelector('.current-quantity-comments').textContent = socialComments.querySelectorAll('.social__comment').length;
+  // const currentQuantityComments = bigPicture.querySelector('.current-quantity-comments').textContent = socialComments.querySelectorAll('.social__comment').length;
 
   socialCommentLoaderBtn.addEventListener('click', (evt) => onSocialCommentLoaderBtnClick(evt, pictureData));
 };
