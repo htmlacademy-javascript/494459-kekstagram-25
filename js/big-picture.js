@@ -1,4 +1,4 @@
-import { mockData } from './data.js';
+import { mockData } from './mock/data.js';
 import { isEscapeKey, modalOpen, modalClose } from './utill.js';
 
 const documentReaload = () => document.location.reload();

@@ -1,13 +1,14 @@
-import { renderPhotos } from './mock/pictures.js';
-import { renderBigPicture } from './mock/big-picture.js';
+import { renderPhotos } from './pictures.js';
+import { renderBigPicture } from './big-picture.js';
 import { mockData } from './mock/data.js';
-import { uploadBtn } from './mock/form.js';
-import { scaleControllValue } from './mock/photo-resize.js';
-// import { effectsList } from './mock/photo-filter.js';
+import { uploadBtn } from './form.js';
+import { scaleControllValue } from './photo-resize.js';
+import { effectsList } from './photo-filter.js';
+// import { slider } from './photo-slider.js';
 
 
 renderPhotos(mockData);
 
-window.console.log(uploadBtn);
-window.console.log(renderBigPicture);
-window.console.log(scaleControllValue);
+// window.console.log(uploadBtn);
+// window.console.log(renderBigPicture);
+// window.console.log(scaleControllValue);
