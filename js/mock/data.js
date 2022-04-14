@@ -1,4 +1,4 @@
-import { getRandomNumber } from './utill.js';
+import { getRandomNumber } from '../utill.js';
 
 const NAMES = ['Вася', 'Петя', 'Саша', 'Никита', 'Николай', 'Гриша', 'Яша'];
 const MESSAGES = [
